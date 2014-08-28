@@ -1,46 +1,83 @@
 {
   "drupal": {
     "sites": {
-      "example": {
+      "colorado": {
         "active": true,
         "deploy": {
-          "action": ["deploy", "install"],
-          "releases": 1
+          "action": ["deploy", "import", "update"],
+          "releases": 3
         },
         "drupal": {
           "version": "7.26",
+          "registry_rebuild": true,
           "install": {
             "install_configure_form.update_status_module": "'array(FALSE,FALSE)'",
             "--clean-url": 1
           },
           "settings": {
-            "profile": "standard",
-            "files": "sites/default/files",
+            "profile": "mmg_custom",
+            "docroot": "htdocs",
+            "files": "htdocs/sites/default/files",
             "cookbook": "drupal",
             "settings": {
               "default": {
-                "location": "sites/default/settings.php"
+                "location": "htdocs/sites/default/settings.php"
+              },
+              "local_dev": {
+                "location": "sites/all/settings.colorado.localdev.php"
               }
             },
-            "db_name": "example",
+            "db_name": "colorado",
             "db_host": "localhost",
             "db_prefix": "",
             "db_driver": "mysql",
-            "db_file": ""
+            "db_file": "/vagrant/sites/colorado/db/ico_O8272014.sql"
           }
         },
         "repository": {
-          "host": "github.com",
-          "uri": "https://github.com/drupal/drupal.git",
-          "revision": "7.26"
+          "host": "",
+          "uri": "/vagrant/sites/colorado/code",
+          "revision": "ico_363906",
+          "submodule": true,
+          "remotes": {
+            "upstream": "tim@pluto.milesmedia.com:/home/tim/sandbox/colorado-source"
+          }
         },
         "web_app": {
           "80": {
-            "server_name": "example.local",
+            "server_name": "colorado.local",
             "rewrite_engine": "On",
-            "docroot": "/srv/www/example/current"
+            "docroot": "/srv/www/colorado/current/htdocs"
           }
         }
+      }
+    }
+  },
+  "nfs_exports": {
+    "/assets": {
+      "clients": {
+        "*": {
+          "writeable": true,
+          "sync": true,
+          "options": [
+            "all_squash",
+            "anonuid=33",
+            "anongid=33"
+          ]
+        }
+      }
+    }
+  },
+  "drupal_frontend": {
+    "css_preprocessor": {
+      "/srv/www/colorado/current/htdocs/sites/all/themes/mmg_aurora": {
+        "gems": [
+          "bundler"
+        ],
+        "commands": [
+          "bundle install && bundle update",
+          "bundle exec compass compile"
+        ]
       }
     }
   }
