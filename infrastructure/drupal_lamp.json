@@ -1,4 +1,9 @@
 {
+  "php": {
+    "directives": {
+      "memory_limit": "512M"
+    }
+  },
   "drupal": {
     "sites": {
       "colorado": {
@@ -37,7 +42,7 @@
         "repository": {
           "host": "",
           "uri": "/vagrant/sites/colorado/code",
-          "revision": "ico_363906",
+          "revision": "ico_364252",
           "submodule": true,
           "remotes": {
             "upstream": "tim@pluto.milesmedia.com:/home/tim/sandbox/colorado-source"
@@ -48,6 +53,56 @@
             "server_name": "colorado.local",
             "rewrite_engine": "On",
             "docroot": "/srv/www/colorado/current/htdocs"
+          }
+        }
+      },
+      "anchorage": {
+        "active": false,
+        "deploy": {
+          "action": ["deploy", "import", "update"],
+          "releases": 3
+        },
+        "drupal": {
+          "version": "7.26",
+          "registry_rebuild": false,
+          "install": {
+            "install_configure_form.update_status_module": "'array(FALSE,FALSE)'",
+            "--clean-url": 1
+          },
+          "settings": {
+            "profile": "mmg_custom",
+            "docroot": "htdocs",
+            "files": "htdocs/sites/default/files",
+            "cookbook": "drupal",
+            "settings": {
+              "default": {
+                "location": "htdocs/sites/default/settings.php"
+              },
+              "local_dev": {
+                "location": "sites/all/settings.anchorage.localdev.php"
+              }
+            },
+            "db_name": "anchorage",
+            "db_host": "localhost",
+            "db_prefix": "",
+            "db_driver": "mysql",
+            "db_file": "/vagrant/sites/anchorage.net/dbs/anch_09022014.sql"
+          }
+        },
+        "repository": {
+          "host": "",
+          "uri": "/vagrant/sites/anchorage.net/code",
+          "revision": "iaw-364054",
+          "submodule": true,
+          "remotes": {
+            "upstream": "tim@pluto.milesmedia.com:/home/tim/anchorage.net"
+          }
+        },
+        "web_app": {
+          "80": {
+            "server_name": "anchorage.local",
+            "rewrite_engine": "On",
+            "docroot": "/srv/www/anchorage/current/htdocs"
           }
         }
       }
@@ -71,6 +126,7 @@
   "drupal_frontend": {
     "css_preprocessor": {
       "/srv/www/colorado/current/htdocs/sites/all/themes/mmg_aurora": {
+        "active": true,
         "gems": [
           "bundler"
         ],
