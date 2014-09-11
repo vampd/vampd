@@ -14,7 +14,7 @@
         },
         "drupal": {
           "version": "7.26",
-          "registry_rebuild": true,
+          "registry_rebuild": false,
           "install": {
             "install_configure_form.update_status_module": "'array(FALSE,FALSE)'",
             "--clean-url": 1
@@ -26,6 +26,7 @@
             "cookbook": "drupal",
             "settings": {
               "default": {
+                "ignore": true,
                 "location": "htdocs/sites/default/settings.php"
               },
               "local_dev": {
@@ -36,16 +37,19 @@
             "db_host": "localhost",
             "db_prefix": "",
             "db_driver": "mysql",
-            "db_file": "/vagrant/sites/colorado/db/ico_O8272014.sql"
+            "db_file": "/vagrant/sites/colorado/db/colorado_new_20140910_163810.sql"
           }
         },
         "repository": {
           "host": "",
           "uri": "/vagrant/sites/colorado/code",
-          "revision": "ico_364252",
+          "revision": "at_363951",
           "submodule": true,
           "remotes": {
-            "upstream": "tim@pluto.milesmedia.com:/home/tim/sandbox/colorado-source"
+            "upstream": "tim@pluto.milesmedia.com:/home/tim/colorado.com",
+            "bobby": "git@10.20.1.17:bobby/colorado-com.git",
+            "bobby-pluto": "tim@pluto.milesmedia.com:/home/bobby/colorado.com",
+            "ryan": "tim@pluto.milesmedia.com:/home/ryan/colorado.com"
           }
         },
         "web_app": {
@@ -123,7 +127,14 @@
       }
     }
   },
+  "nodejs": {
+    "install_method": "package",
+    "npm": "1.4.26"
+  },
   "drupal_frontend": {
+    "nodejs": {
+      "packages":["bower"]
+    },
     "css_preprocessor": {
       "/srv/www/colorado/current/htdocs/sites/all/themes/mmg_aurora": {
         "active": true,

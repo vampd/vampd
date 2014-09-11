@@ -92,5 +92,6 @@ env_run_lists '_default' => [
                 'recipe[drupal]',
                 'recipe[drupal-nfs]',
                 'recipe[drupal-frontend]',
+                'recipe[drupal-frontend::nodejs]',
                 'recipe[drupal-solr]',
               ]
