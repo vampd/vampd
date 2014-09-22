@@ -20,14 +20,14 @@ require 'json'
   https://github.com/cyberswat/drupal-lamp/wiki/Vagrant-Base-Boxes
 
 =end
-data = JSON.parse(File.read("infrastructure/drupal_lamp.json"))
+ # data = JSON.parse(File.read("infrastructure/drupal_lamp.json"))
 
 Vagrant.configure("2") do |config|
   # for Vagrant-provided nfs support
   #config.nfs.map_uid = 0
   #config.nfs.map_gid = 0
 
-  config.omnibus.chef_version = '11.12.4'
+  config.omnibus.chef_version = '11.16.2'
   config.berkshelf.enabled = true
   config.berkshelf.berksfile_path = File.dirname(__FILE__) + "/Berksfile"
   config.vm.define :drupaldev do |server|
@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
     # destination in your drupal_lamp.json file
     #server.vm.synced_folder "assets", "/assets", :nfs => false, :owner => "www-data", :group => "www-data"
 
-    server.vm.synced_folder 'assets', '/assets', disabled: true
+    #server.vm.synced_folder 'assets', '/assets', disabled: true
     # For Vagrant-provided nfs support
     # Ensure the second parameter (/assets) is the same as the Default['drupal']['server']['assets']
     # destination in your drupal_lamp.json file
@@ -64,8 +64,11 @@ Vagrant.configure("2") do |config|
       chef.log_level = :info
       chef.roles_path = "chef/roles"
       chef.data_bags_path = "chef/data_bags"
-      chef.add_role("drupal_lamp")
-      chef.json = data
+      chef.add_role("base")
+      chef.add_role("colorado")
+      chef.add_role("anchorage")
+      # chef.add_role("example")
+      chef.add_role("nfs_export")
     end
   end
 end

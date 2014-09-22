@@ -1,0 +1,23 @@
+{
+  "name": "nfs_export",
+  "description": "The base role that gets added to every machine.",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "nfs_exports": {
+      "/assets": {
+        "clients": {
+          "*": {
+            "writeable": true,
+            "sync": true,
+            "options": [
+              "all_squash",
+              "anonuid=33",
+              "anongid=33"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,12 +2,17 @@ DEPENDENCIES
   apache2 (~> 1.8.14)
   apt (~> 2.3.0)
   build-essential (~> 1.4.2)
+  chef-solo-search (~> 0.5.1)
   database (~> 1.5.2)
   dmg (~> 2.0.8)
   drupal
-    path: ../../git/drupal
+    git: https://github.com/timodwhit/drupal
+    revision: 7f00f4ae95bcaf7786fdcc3126f3045262ebcad8
+    branch: miles
   drupal-frontend
-    path: ../../git/drupal-frontend
+    git: https://github.com/timodwhit/drupal-frontend
+    revision: d94e35bbc761f84a1fa11a981c324b12b08a55f8
+    branch: master
   drupal-nfs
     git: https://github.com/arknoll/drupal-nfs
     revision: b32c4b5a936786d37c6e13da02573ad7a9c8bf48
@@ -28,6 +33,7 @@ GRAPH
   apt (2.3.10)
   aws (2.4.0)
   build-essential (1.4.4)
+  chef-solo-search (0.5.1)
   chef-sugar (2.2.0)
   chef_handler (1.1.6)
   curl (2.0.0)

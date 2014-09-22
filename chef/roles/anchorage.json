@@ -1,0 +1,41 @@
+{
+  "name": "anchorage",
+  "description": "The anchorage role",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "drupal": {
+      "sites": {
+        "anchorage": {
+          "active": true,
+          "deploy": {
+            "action": ["deploy", "import", "update"]
+          },
+          "drupal": {
+            "settings": {
+              "docroot": "htdocs",
+              "settings": {
+                "default": {
+                  "ignore": true
+                },
+                "local_dev": {
+                  "location": "sites/all/settings.anchorage.localdev.php"
+                }
+              },
+              "db_file": "/vagrant/sites/anchorage.net/dbs/anchorage_20140916_202803.sql"
+            }
+          },
+          "repository": {
+            "host": "",
+            "uri": "/vagrant/sites/anchorage.net/code",
+            "revision": "TR_1DNAm5KP",
+            "submodule": true,
+            "remotes": {
+              "upstream": "tim@pluto.milesmedia.com:/home/tim/anchorage.net"
+            }
+          }
+        }
+      }
+    }
+  }
+}
