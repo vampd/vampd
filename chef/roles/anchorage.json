@@ -3,11 +3,12 @@
   "description": "The anchorage role",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "default_attributes": {
+  "default_attributes": { },
+  "override_attributes": {
     "drupal": {
       "sites": {
         "anchorage": {
-          "active": true,
+          "active": false,
           "deploy": {
             "action": ["deploy", "import", "update"]
           },
@@ -24,6 +25,9 @@
               },
               "db_file": "/vagrant/sites/anchorage.net/dbs/anchorage_20140916_202803.sql"
             }
+          },
+          "drupal_user": {
+            "admin_user": "administrator"
           },
           "repository": {
             "host": "",

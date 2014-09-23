@@ -3,7 +3,8 @@
   "description": "The base role that gets added to every machine.",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "default_attributes": {
+  "default_attributes": {},
+  "override_attributes": {
     "nfs_exports": {
       "/assets": {
         "clients": {

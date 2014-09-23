@@ -1,0 +1,40 @@
+{
+  "name": "mmg_microsite",
+  "description": "The role for mmg_microsite",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {},
+  "override_attributes": {
+    "drupal": {
+      "sites": {
+        "mmg_microsite": {
+          "active": true,
+          "deploy": {
+            "action": ["deploy", "install"]
+          },
+          "drupal": {
+            "settings": {
+              "profile": "mmg_microsite",
+              "settings": {
+                "default": {
+                  "ignore": false
+                },
+                "local_dev": {
+                  "location": "profiles/mmg_microsite/settings.mmg_microsite.localdev.php"
+                }
+              }
+            }
+          },
+          "repository": {
+            "host": "",
+            "uri": "/vagrant/sites/mmg_ms/code",
+            "revision": "migrate",
+            "remotes": {
+              "upstream": "tim@pluto.milesmedia.com:/home/tim/mmg_microsite"
+            }
+          }
+        }
+      }
+    }
+  }
+}

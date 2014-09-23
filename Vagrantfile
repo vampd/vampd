@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
     # destination in your drupal_lamp.json file
     #server.vm.synced_folder "assets", "/assets", :nfs => false, :owner => "www-data", :group => "www-data"
 
-    #server.vm.synced_folder 'assets', '/assets', disabled: true
+    server.vm.synced_folder 'assets', '/assets', disabled: true
     # For Vagrant-provided nfs support
     # Ensure the second parameter (/assets) is the same as the Default['drupal']['server']['assets']
     # destination in your drupal_lamp.json file
@@ -64,10 +64,13 @@ Vagrant.configure("2") do |config|
       chef.log_level = :info
       chef.roles_path = "chef/roles"
       chef.data_bags_path = "chef/data_bags"
+      chef.environments_path = 'chef/environments'
+      chef.environment = 'development'
       chef.add_role("base")
-      chef.add_role("colorado")
-      chef.add_role("anchorage")
+      # chef.add_role("colorado")
+      # chef.add_role("anchorage")
       # chef.add_role("example")
+      chef.add_role("mmg_microsite")
       chef.add_role("nfs_export")
     end
   end
