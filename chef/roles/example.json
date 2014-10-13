@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "description": "The base role that gets added to every machine.",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {},
+  "override_attributes": {
+   "drupal": {
+      "sites": {
+        "example": {
+          "active": true
+        }
+      }
+    }
+  }
+}
