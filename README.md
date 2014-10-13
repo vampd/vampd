@@ -66,4 +66,5 @@ update hooks, check out our desire for a standard dev process in the [wiki](http
 
 With that, lets start actually working with vampd!
 
-More instructions to come. 
+Working with [existing sites](https://github.com/vampd/vampd/wiki/Existing-Sites)
+[Troubleshooting](https://github.com/vampd/vampd/wiki/Trobuleshooting)
