@@ -1,3 +1,6 @@
+source "https://api.berkshelf.com"
+
+cookbook 'chef-solo-search', '~> 0.5.1'
 cookbook 'apt', '~> 2.3.0'
 cookbook 'apache2', '~> 1.8.14'
 cookbook 'build-essential', '~> 1.4.2'
@@ -9,4 +12,7 @@ cookbook 'openssl', '~> 1.1.0'
 cookbook 'php', '~> 1.2.6'
 cookbook 'ssh_known_hosts', '~> 1.1.0'
 cookbook 'sudo', '~> 2.2.2'
-cookbook "drupal", git: "https://github.com/newmediadenver/drupal", tag: "v1.0.0"
+cookbook 'drupal', git: "https://github.com/vampd/drupal", tag: "4.0.0"
+cookbook "drupal-nfs", git: "https://github.com/vampd/drupal-nfs", tag: "1.0.0"
+cookbook "drupal-frontend", git: "https://github.com/vampd/drupal-frontend", tag: "1.0.0"
+cookbook "drupal-solr", git: "https://github.com/vampd/drupal-solr", tag: "1.1.0"
