@@ -8,7 +8,12 @@
    "drupal": {
       "sites": {
         "example": {
-          "active": true
+          "active": true,
+          "drupal": {
+            "settings": {
+              "docroot": ""
+            }
+          }
         }
       }
     }
