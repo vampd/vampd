@@ -11,6 +11,11 @@
           "active": true,
           "deploy": {
             "action": ["deploy", "install"]
+          },
+          "drupal": {
+            "settings": {
+              "docroot": ""
+            }
           }
         }
       }
