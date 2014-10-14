@@ -12,7 +12,7 @@ cookbook 'openssl', '~> 1.1.0'
 cookbook 'php', '~> 1.2.6'
 cookbook 'ssh_known_hosts', '~> 1.1.0'
 cookbook 'sudo', '~> 2.2.2'
-cookbook 'drupal', git: "https://github.com/vampd/drupal", tag: "4.0.0"
+cookbook 'drupal', git: "https://github.com/vampd/drupal", tag: "4.0.1"
 cookbook "drupal-nfs", git: "https://github.com/vampd/drupal-nfs", tag: "1.0.0"
 cookbook "drupal-frontend", git: "https://github.com/vampd/drupal-frontend", tag: "1.0.0"
 cookbook "drupal-solr", git: "https://github.com/vampd/drupal-solr", tag: "1.1.0"
