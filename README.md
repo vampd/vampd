@@ -64,7 +64,8 @@ what you are going live on, and your site should be able to deploy into producti
 with a simple install, or if you have a live site, updates should be applied via
 update hooks, check out our desire for a standard dev process in the [wiki](http://github.com/vampd/vampd)
 
-With that, lets start actually working with vampd!
-
-Working with [existing sites](https://github.com/vampd/vampd/wiki/Existing-Sites)
-[Troubleshooting](https://github.com/vampd/vampd/wiki/Trobuleshooting)
+[Existing Sites](https://github.com/vampd/vampd/wiki/Existing-Sites) <br />
+[Troubleshooting](https://github.com/vampd/vampd/wiki/Trobuleshooting) <br />
+[**Examples**](https://github.com/vampd/vampd-examples): This will provide a great
+set of examples for many different use cases. Please feel free to fork this and
+post you examples here.
