@@ -62,7 +62,7 @@ a database to share across a team, actually it is quite against that. We aim to
 create reproducible environments and code from every aspect. The server should match
 what you are going live on, and your site should be able to deploy into production
 with a simple install, or if you have a live site, updates should be applied via
-update hooks, check out our desire for a standard dev process in the [wiki](http://github.com/vampd/vampd)
+update hooks, check out our desire for a standard dev process in the [wiki](http://github.com/vampd/vampd/wiki)
 
 [Existing Sites](https://github.com/vampd/vampd/wiki/Existing-Sites) <br />
 [Troubleshooting](https://github.com/vampd/vampd/wiki/Trobuleshooting) <br />
