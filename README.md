@@ -1,8 +1,7 @@
 vampd
 =================
 
-vampd is a fork of the open source project [drupal-lamp](newmediadenver/drupal-lamp).
-We are looking to use the project as a base for awesomeness to come.
+vampd is a vagrant chef provisioner that looks to ease local drupal development by automating the overhead of setting up the server, placing the files, and running the commands. Through vampd, all of this will be automated and can be customized to your needs.
 
 vampd looks to become a one stop solution for local development and deployment
 strategy helping to standardize processes and dev flow without constricting the
@@ -69,3 +68,5 @@ update hooks, check out our desire for a standard dev process in the [wiki](http
 [**Examples**](https://github.com/vampd/vampd-examples): This will provide a great
 set of examples for many different use cases. Please feel free to fork this and
 post you examples here.
+
+vampd is a fork of the open source project [drupal-lamp](newmediadenver/drupal-lamp).
