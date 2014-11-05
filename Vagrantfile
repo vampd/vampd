@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
       chef.environments_path = 'chef/environments'
       chef.environment = 'development'
       chef.add_role("base")
-      Dir.foreach(File.dirname(__FILE__) + '/' + chef.roles_path) do |path, block|
+      Dir.foreach(working_dir + chef.roles_path) do |path, block|
         next if path == '.' or path == '..' or path == 'base.json' or path == 'nfs_export.json'
         chef.add_role(File.basename(working_dir + chef.roles_path + '/' + path, ".json"))
       end
