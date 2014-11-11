@@ -16,9 +16,9 @@ Installation Instructions
 The install of vampd is not the easiest thing, but if you are familiar with the
 command line, should be fairly simple.
 
-First thing is first, you will need to install [vagrant](https://www.vagrantup.com/downloads.html)
-and install [virtualbox](https://www.virtualbox.org/wiki/Downloads). If you are on
-a Mac you will also need to install X-code from the App store (for Git).
+First thing is first, you will need to install [vagrant](https://www.vagrantup.com/downloads.html),
+[virtualbox](https://www.virtualbox.org/ andwiki/Downloads) and [ChefDK](https://downloads.getchef.com/chef-dk/).
+If you are on a Mac you will also need to install X-code from the App store (for Git).
 
 Now open your terminal of choice.
 
@@ -30,7 +30,7 @@ mkdir vagrant
 cd vagrant
 git clone https://github.com/vampd/vampd.git
 cd vampd
-vagrant plugin install vagrant-berkshelf --plugin-version '2.0.1'
+vagrant plugin install vagrant-berkshelf
 vagrant plugin install vagrant-omnibus
 vagrant up
 ```
@@ -54,6 +54,15 @@ http://example.local and check it out, a fresh Drupal install.
 
 
 And voila, you have a site installed!
+
+##Upgrading Instructions
+
+If you want to upgrade vagrant-berkshelf to use 3.0. Unforunately, it isn't so easy.
+
+You must first install [ChefDK](https://downloads.getchef.com/chef-dk/) and [uninstall Vagrant](https://docs.vagrantup.com/v2/installation/uninstallation.html)
+making sure to remove user data by removing the `~/.vagrant.d` folder.
+
+Then reinstall Vagrant and the vagrant plugins.
 
 ##Now let's have some fun.
 
