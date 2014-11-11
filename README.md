@@ -17,7 +17,7 @@ The install of vampd is not the easiest thing, but if you are familiar with the
 command line, should be fairly simple.
 
 First thing is first, you will need to install [vagrant](https://www.vagrantup.com/downloads.html),
-[virtualbox](https://www.virtualbox.org/ andwiki/Downloads) and [ChefDK](https://downloads.getchef.com/chef-dk/).
+[virtualbox](https://www.virtualbox.org/wiki/Downloads) and [ChefDK](https://downloads.getchef.com/chef-dk/).
 If you are on a Mac you will also need to install X-code from the App store (for Git).
 
 Now open your terminal of choice.
