@@ -64,4 +64,4 @@ if ! yvg="$(yo vampd -v)" || [ -z "yvg" ]; then
   sudo npm install -g generator-vampd
 fi
 
-yo vampd:install
+yo vampd
