@@ -66,12 +66,12 @@ fi
 
 # Install yo
 if ! ye="$(type -p "yo")" || [ -z "$ye" ]; then
-  sudo npm install -g yo
+  npm install -g yo
 fi
 
 # Install the vampd-generator
 if ! yvg="$(yo vampd -v)" || [ -z "$yvg" ]; then
-  sudo npm install -g generator-vampd
+  npm install -g generator-vampd
 fi
 
 
