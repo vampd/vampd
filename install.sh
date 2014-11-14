@@ -54,14 +54,26 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
   fi
 fi
 
+# Install the vagrant plugins
+if ! vbk="$(vagrant plugin vagrant-berkshelf -v)" || [ -z "$vbk" ]; then
+  vagrant plugin install vagrant-berkshelf
+fi
+
+# Install vagrant omnibus
+if ! vob="$(vagrant plugin vagrant-omnibus -v)" || [ -z "$vob" ]; then
+  vagrant plugin install vagrant-omnibus
+fi
+
 # Install yo
 if ! ye="$(type -p "yo")" || [ -z "$ye" ]; then
   sudo npm install -g yo
 fi
 
 # Install the vampd-generator
-if ! yvg="$(yo vampd -v)" || [ -z "yvg" ]; then
+if ! yvg="$(yo vampd -v)" || [ -z "$yvg" ]; then
   sudo npm install -g generator-vampd
 fi
+
+
 
 yo vampd
