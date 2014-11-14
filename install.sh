@@ -8,7 +8,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 
   # Install brew cask
-  brew install caskroom/cask/brew-cask
+  if ! bc="$(brew ls --versions brew-cask)" || [ -z "$bc" ]; then
+    brew install caskroom/cask/brew-cask
+  fi
 
   # Install Node
   if ! nj="$(type -p "npm")" || [ -z "$nj" ]; then
@@ -25,7 +27,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     brew cask install vagrant
   fi
   # Install ChefDk
-  if ! cdk=$(type -p "chef") || [ -z "$cdk" ]; then
+  if ! cdk="$(type -p "chef")" || [ -z "$cdk" ]; then
     brew cask install chefdk
   fi
 
@@ -52,4 +54,14 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
   fi
 fi
 
+# Install yo
+if ! ye="$(type -p "yo")" || [ -z "$ye" ]; then
+  sudo npm install -g yo
+fi
 
+# Install the vampd-generator
+if ! yvg="$(yo vampd -v)" || [ -z "yvg" ]; then
+  sudo npm install -g generator-vampd
+fi
+
+yo vampd:install
