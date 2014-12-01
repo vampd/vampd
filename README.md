@@ -46,7 +46,7 @@ sudo nano /etc/hosts
 By default the IP address found in the Vagrantfile is 192.168.50.5 So add this
 line to the file below all other lines.
 
-example.local 192.168.50.5
+192.168.50.5 example.local
 
 Now go back to your original terminal tab. If the process has finished, visit
 http://example.local and check it out, a fresh Drupal install.
