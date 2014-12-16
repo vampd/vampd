@@ -5,7 +5,7 @@
   "json_class": "Chef::Role",
   "default_attributes": {},
   "override_attributes": {
-   "drupal": {
+    "drupal": {
       "sites": {
         "example": {
           "active": true,

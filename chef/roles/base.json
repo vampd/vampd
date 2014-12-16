@@ -21,6 +21,8 @@
     "recipe[drupal-nfs]",
     // "recipe[drupal-frontend]",
     // "recipe[drupal-solr]",
+    // "recipe[samba]",
+    // "recipe[samba::server]",
     "recipe[drupal::perms]"
   ]
 }

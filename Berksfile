@@ -9,3 +9,4 @@ cookbook 'drupal', git: "https://github.com/vampd/drupal", tag: "4.0.5"
 cookbook "drupal-nfs", git: "https://github.com/vampd/drupal-nfs", tag: "1.0.0"
 cookbook "drupal-frontend", git: "https://github.com/vampd/drupal-frontend", tag: "1.0.0"
 cookbook "drupal-solr", git: "https://github.com/vampd/drupal-solr", tag: "1.1.0"
+cookbook "samba", '~> 0.12.0'
