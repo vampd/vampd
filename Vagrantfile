@@ -26,10 +26,10 @@ Vagrant.configure("2") do |config|
   # for Vagrant-provided nfs support
   #config.nfs.map_uid = 0
   #config.nfs.map_gid = 0
-
+  working_dir = File.dirname(__FILE__) + "/"
   config.omnibus.chef_version = '11.16.2'
   config.berkshelf.enabled = true
-  config.berkshelf.berksfile_path = File.dirname(__FILE__) + "/Berksfile"
+  config.berkshelf.berksfile_path = working_dir + "Berksfile"
   config.vm.define :drupaldev do |server|
     server.ssh.forward_agent = true
     server.vm.box = "precise64"
@@ -58,7 +58,10 @@ Vagrant.configure("2") do |config|
       chef.environments_path = 'chef/environments'
       chef.environment = 'development'
       chef.add_role("base")
-      chef.add_role("example")
+      Dir.foreach(working_dir + chef.roles_path) do |path, block|
+        next if path == '.' or path == '..' or path == 'base.json' or path == 'nfs_export.json'
+        chef.add_role(File.basename(working_dir + chef.roles_path + '/' + path, ".json"))
+      end
       chef.add_role("nfs_export")
     end
   end
