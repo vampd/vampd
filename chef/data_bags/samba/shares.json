@@ -1,0 +1,14 @@
+{
+  "id": "shares",
+  "shares": {
+    "data": {
+      "path": "/assets",
+      "browsable": "yes",
+      "guest ok": "yes",
+      "read only": "no",
+      "create mask": "0777",
+      "force user": "www-data",
+      "force group": "www-data"
+    }
+  }
+}
