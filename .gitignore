@@ -23,3 +23,9 @@ doc/
 .vagrant
 
 .DS_Store
+
+# These are default in the project but other roles should be ignored
+chef/roles/*
+!chef/roles/base.json
+!chef/roles/example.json
+!chef/roles/nfs_export.json
