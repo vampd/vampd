@@ -81,6 +81,26 @@ making sure to remove user data by removing the `~/.vagrant.d` folder.
 
 Then reinstall Vagrant and the vagrant plugins.
 
+##Setup a Drush alias to your vagrant box
+
+If you have drush installed on your local machine you can create a drush alias to run drush commands on your site from your local environment.
+
+1. Create a drush alias file within ~/.drush. Name the file [site name].aliases.drushrc.php.
+1. In the file the contents should look something like:
+
+```
+<?php
+
+$aliases['local'] = array(
+  'root' => '/srv/www/[site dir]/current/docroot/',
+  'remote-host' => '127.0.0.1',
+  'remote-user' => 'vagrant',
+  'ssh-options' => '-p 2222 -i ~/.vagrant.d/insecure_private_key',
+  'uri' => '127.0.0.1:8080',
+);
+```
+Now you can access your site from your local machine by using drush @[site name].local [command]
+
 ##Now let's have some fun.
 
 For those who don't know, vampd isn't about just spinning up a site and dumping
