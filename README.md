@@ -99,7 +99,7 @@ $aliases['local'] = array(
   'uri' => '127.0.0.1:8080',
 );
 ```
-1. Now you can access your site from your local machine by using drush @[site name].local [command]
+Now you can access your site from your local machine by using drush @[site name].local [command]
 
 ##Now let's have some fun.
 
