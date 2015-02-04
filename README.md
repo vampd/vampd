@@ -58,14 +58,7 @@ And voila, you have a site installed!
 An NFS recipe comes preconfigured in vampd. This allows unix based systems, as well
 as some Windows versions to use NFS as a mount to access assets on the host.
 
-In your Vagrantfile, leave the following commented out:
-```
-  # for Vagrant-provided nfs support
-  #config.nfs.map_uid = 0
-  #config.nfs.map_gid = 0
-```
-
-Also leave the server.vm.synced_folder setting as "disabled: true":
+In your Vagrantfile, leave the server.vm.synced_folder setting as "disabled: true":
 
 ```
 server.vm.synced_folder 'assets', '/assets', disabled: true
