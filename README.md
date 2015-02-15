@@ -72,7 +72,7 @@ Run 'vagrant up' from your machine (or 'vagrant provision' if your vbox is alrea
 
 	On an OSX run:  `sudo mount -o resvport 192.168.50.5:/assets assets`, or
 
-  On linux run: `sudo mount 192.168.50.5:/assets /assets`
+  On linux run: `sudo mount 192.168.50.5:/assets assets`
 
 
 ##Mounting the assets through Samba
