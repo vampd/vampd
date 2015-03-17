@@ -70,6 +70,7 @@ On an OSX run:  `sudo mount -o resvport 192.168.50.5:/assets /assets`
 
 On linux run: `sudo mount 192.168.50.5:/assets /assets`
 
+NOTE: Your local machine might not have an `/assets` folder. To create one, `mkdir /assets`. Also, note it is possible to mount the folder to another folder of your choosing. The directory `/assets` guarantees the path is the same as that of the virtualized machine. This is neccessary under some conditions, such as gitsubmodules.
 
 ##Mounting the assets through Samba
 To mount your local machine to the host, you will need to do some leg work, but it
