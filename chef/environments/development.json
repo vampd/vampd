@@ -13,6 +13,7 @@
         ],
         "agent_forwarding": true,
         "groups": ["admin", "sudo"],
+        "users": ["vagrant"],
         "passwordless": true
       }
     },
