@@ -1,7 +1,7 @@
 vampd
 =================
 
-vampd is a vagrant chef provisioner that looks to ease local drupal development by automating the overhead of setting up the server, placing the files, and running the commands. Through vampd, all of this will be automated and can be customized to your needs.
+vampd is a lamp stack and drupal automation machine! vampd stands for virtualized-apache-mysql-php-drupal. It is a vagrant chef provisioner that looks to ease local drupal development by automating the overhead of setting up the server, placing the files, and running the commands. Through vampd, all of this will be automated and can be customized to your needs.
 
 vampd looks to become a one stop solution for local development and deployment
 strategy helping to standardize processes and dev flow without constricting the
