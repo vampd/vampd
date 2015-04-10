@@ -1,0 +1,21 @@
+/*Hide things by default*/
+.js #git,
+.js #docroot_path,
+.js #db_file {
+  display: none;
+}
+
+label.required:after {
+  content: '*';
+  display: inline-block;
+  vertical-align: top;
+  color: red;
+}
+
+label.error {
+  color: red;
+}
+
+label.error + input[type="text"] {
+  border-color: red;
+}

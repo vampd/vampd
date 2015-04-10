@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VAMPD UI | Welcome</title>
+    <link rel="stylesheet" href="ui/plugins/zurb/css/foundation.css" />
+    <link rel="stylesheet" href="ui/css/base.css" />
+    <script src="ui/plugins/zurb/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>VAMPD.io</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <form id="site_1">
+        <div class="row">
+          <div class="large-12 columns required">
+            <label class="required">Project Machine Name</label>
+            <input id="site_name" type="text" placeholder="example" />
+          </div>
+        </div>
+        <div class="row">
+          <div id="actions" class="large-12 columns">
+            <label>What would you like to do?</label>
+            <input type="checkbox" name="action_deploy" value="deploy" checked="checked"><label for="action_deploy">Deploy</label>
+            <input type="checkbox" name="action_install" value="install" checked="checked"><label for="action_install">Install</label>
+            <input type="checkbox" name="action_import" value="deploy" ><label for="action_import">Import</label>
+            <input type="checkbox" name="action_update" value="install" ><label for="action_update">Update</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 medium-12 columns git_bool">
+            <label>Do you have a git repo?</label>
+            <input type="checkbox" name="git_yes" value="1" ><label for="git_yes">Yes</label>
+          </div>
+          <div id="git" class="large-12 columns">
+            <div class="large-4 medium-4 columns">
+              <label>Host</label>
+              <input id="git_host" type="text" placeholder="github.com" value="github.com"/>
+            </div>
+            <div class="large-4 medium-4 columns">
+              <label>Git Repo</label>
+              <input id="git_repo" type="text" placeholder="git@github.com:drupal/drupal" value="git@github.com:drupal/drupal"/>
+            </div>
+            <div class="large-4 medium-4 columns">
+              <label>Branch or Tag</label>
+              <input id="git_rev" type="text" placeholder="7.34" value="7.34"/>
+            </div>
+            <div class="row">
+              <!-- <div class="large-12 medium-12 columns ">
+                <label>Do you have additional git remotes?</label>
+                <input type="radio" name="git_remotes_yes" value="1" ><label for="git_remotes_yes">Yes</label>
+                <input type="radio" name="git_remotes_no" value="0" checked="checked"><label for="git_remotes_no">No</label>
+              </div>
+              <div id="git_remotes" class="large-12 columns">
+                <div class="large-4 medium-6 columns">
+                  <label>Name</label>
+                  <input type="text" placeholder="upstream" />
+                </div>
+                <div class="large-8 medium-6 columns">
+                  <label>URI</label>
+                  <input type="text" placeholder="git@github.com:test/test" />
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 medium-12 columns">
+            <label>Drupal Version</label>
+            <select id="drupal_version">
+              <option value="7.x">7.x</option>
+              <option value="6.x">6.x</option>
+            </select>
+          </div>
+          <div id="profile" class="large-12 medium-12 columns">
+            <label>Install Profile</label>
+            <input id="settings_profile" type="text" placeholder="standard" value="standard" />
+          </div>
+          <div id="db_file" class="large-12 medium-12 columns">
+            <label>DB File location (relative to your vampd instance)</label>
+            <input id="settings_db_file" type="text" placeholder="sites/dbs/site_name.sql" />
+          </div>
+        </div>
+        <div class="row">
+          <div id="docroot" class="large-12 medium-12 columns git_bool">
+            <label>Are your files in a docroot? Example: "htdocs", "docroot".</label>
+            <input type="checkbox" name="docroot" id="docroot_bool" value="1" ><label for="docroot">Yes</label>
+          </div>
+          <div id="docroot_path" class="large-12 columns">
+            <label>What is the docroot?</label>
+            <input id="settings_docroot" type="text" placeholder="docroot" />
+          </div>
+        </div>
+        <div class="row">
+          <div id="files" class="large-12 medium-12 columns ">
+            <label class="required">Where do your files live, relative to the repository root? </label>
+            <input id="settings_files" type="text" placeholder="sites/default/files" value="sites/default/files" />
+          </div>
+          <div id="settings" class="large-12 medium-12 columns">
+            <label class="required">Where does your sites settings.php live, relative to docroot?</label>
+            <input id="settings_settings" type="text" placeholder="sites/default/settings.php" value="sites/default/settings.php"/>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="large-12 medium-12 columns ">
+            <label>Do you have additional settings.phps?</label>
+            <input type="radio" name="settings_yes" value="1" ><label for="settings_yes">Yes</label>
+            <input type="radio" name="settings_no" value="0" checked="checked"><label for="settings_no">No</label>
+          </div>
+          <div id="settings_add" class="large-12 columns">
+            <div class="large-12 medium-12 columns">
+              <label>Location of additional settings.php</label>
+              <input type="text" placeholder="sites/default/dev.settings.php" />
+            </div>
+          </div>
+        </div> -->
+        <input href="#" class="medium success button" id="submit" value="Submit"/>
+        <a href="#" download="example.json" class="medium success button" id="downloadlink" style="display:none;">Download Json</a>
+      </form>
+    </div>
+
+    <script src="ui/plugins/zurb/js/vendor/jquery.js"></script>
+    <script src="ui/plugins/zurb/js/foundation.min.js"></script>
+    <script src="ui/js/base.js"></script>
+    <script src="ui/js/toggle.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
