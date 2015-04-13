@@ -6,6 +6,7 @@
   }
   // Set up a blank object.
   var site = {};
+
   /**
    * Function to validate form
    * @return true or false if not valid.
@@ -23,6 +24,7 @@
     });
     return result;
   }
+
   /**
    * Returns JSON string
    */
@@ -169,6 +171,17 @@
     });
   }
 
+  /**
+   * Function to Update live text area
+   * @param  {[type]} e) {               e.preventDefault();    var validate [description]
+   * @return {[type]}    [description]
+   */
+  function updateLiveJson(site) {
+    $('#live-output .site-name b').html(site.name + '.json');
+    var jsonString = JSON.stringify(site, null, 2);
+    $('#live-output textarea').html(jsonString);
+  }
+
   $('#submit').on('click', function(e) {
     e.preventDefault();
     var validate = validateForm();
@@ -189,12 +202,17 @@
     var validate = validateForm();
     if (validate) {
       createSite();
-      $('#live-output .site-name b').html(site.name + '.json');
-      var jsonString = JSON.stringify(site, null, 2);
-      $('#live-output textarea').html(jsonString);
+      updateLiveJson(site);
     }
   });
 
+  $('input[type="text"]').on('keypress', function(e) {
+    var validate = validateForm();
+    if (validate) {
+      createSite();
+      updateLiveJson(site);
+    }
+  });
   // Loop through the sites, and set the options.
   $.each(sites, function(i) {
     var site_name  = this.name;
