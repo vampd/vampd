@@ -18,7 +18,7 @@
   });
 
   // Set up show/hide for git
-  $('.git_bool input').on('change', function(e) {
+  $('#git_bool').on('change', function(e) {
     toggleInput('input[name="git_yes"]', '#git');
   });
 

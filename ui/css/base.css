@@ -19,3 +19,7 @@ label.error {
 label.error + input[type="text"] {
   border-color: red;
 }
+
+#live-output textarea {
+  height: 300px;
+}

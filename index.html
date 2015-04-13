@@ -11,8 +11,14 @@
   <body>
 
     <div class="row">
-      <div class="large-12 columns">
+      <div class="large-8 columns">
         <h1>VAMPD.io</h1>
+      </div>
+      <div class="large-4 columns">
+        <label>Previous Sites</label>
+        <select id="previous_sites">
+          <option value="_none"> New Site</option>
+        </select>
       </div>
     </div>
 
@@ -27,16 +33,16 @@
         <div class="row">
           <div id="actions" class="large-12 columns">
             <label>What would you like to do?</label>
-            <input type="checkbox" name="action_deploy" value="deploy" checked="checked"><label for="action_deploy">Deploy</label>
-            <input type="checkbox" name="action_install" value="install" checked="checked"><label for="action_install">Install</label>
-            <input type="checkbox" name="action_import" value="deploy" ><label for="action_import">Import</label>
-            <input type="checkbox" name="action_update" value="install" ><label for="action_update">Update</label>
+            <input type="checkbox" name="action_deploy" id="action_deploy" value="deploy" checked="checked"><label for="action_deploy">Deploy</label>
+            <input type="checkbox" name="action_install" id="action_install" value="install" checked="checked"><label for="action_install">Install</label>
+            <input type="checkbox" name="action_import" id="action_import" value="import" ><label for="action_import">Import</label>
+            <input type="checkbox" name="action_update" id="action_update" value="update" ><label for="action_update">Update</label>
           </div>
         </div>
         <div class="row">
-          <div class="large-12 medium-12 columns git_bool">
+          <div class="large-12 medium-12 columns">
             <label>Do you have a git repo?</label>
-            <input type="checkbox" name="git_yes" value="1" ><label for="git_yes">Yes</label>
+            <input type="checkbox" name="git_yes" value="1" id="git_bool" ><label for="git_bool">Yes</label>
           </div>
           <div id="git" class="large-12 columns">
             <div class="large-4 medium-4 columns">
@@ -90,7 +96,7 @@
         <div class="row">
           <div id="docroot" class="large-12 medium-12 columns git_bool">
             <label>Are your files in a docroot? Example: "htdocs", "docroot".</label>
-            <input type="checkbox" name="docroot" id="docroot_bool" value="1" ><label for="docroot">Yes</label>
+            <input type="checkbox" name="docroot" id="docroot_bool" value="1" ><label for="docroot_bool">Yes</label>
           </div>
           <div id="docroot_path" class="large-12 columns">
             <label>What is the docroot?</label>
@@ -120,11 +126,19 @@
             </div>
           </div>
         </div> -->
-        <input href="#" class="medium success button" id="submit" value="Submit"/>
+        <input class="medium success button" id="submit" value="Submit"/>
         <a href="#" download="example.json" class="medium success button" id="downloadlink" style="display:none;">Download Json</a>
       </form>
+      <div class="row">
+        <div id="live-output" class="large-12 medium-12 columns">
+          <h5>Save the Following code to your vampd directory under chef/roles/<span class="site-name"><b>site_name.json</b></span></h5>
+          <textarea></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <a href="#" class="medium success button" id="clear_sites">Clear Previous Sites</a>
+      </div>
     </div>
-
     <script src="ui/plugins/zurb/js/vendor/jquery.js"></script>
     <script src="ui/plugins/zurb/js/foundation.min.js"></script>
     <script src="ui/js/base.js"></script>
