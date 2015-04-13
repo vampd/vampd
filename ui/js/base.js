@@ -6,7 +6,6 @@
   }
   // Set up a blank object.
   var site = {};
-  console.log(sites);
   /**
    * Function to validate form
    * @return true or false if not valid.

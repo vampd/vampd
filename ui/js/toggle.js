@@ -27,19 +27,22 @@
   // Set up show/hide for docroot
   $('#docroot_bool').on('change', function(e) {
     toggleInput('#docroot_bool', '#docroot_path');
-    var files = $('#settings_files').val();
   });
 
   // On docroot change update the file location to reflect default
-  if (files == 'sites/default/files') {
-    $('#settings_docroot').on('change', function(e) {
-      var docroot = $(this).val();
-      var docroot_before = '';
-      if (docroot != '') {
-        var docroot_before = docroot + '/';
-      }
+  $('#settings_docroot').on('change', function(e) {
+    var docroot = $(this).val();
+    var docroot_before = '';
+    if (docroot != '') {
+      var docroot_before = docroot + '/';
+    }
+    var files = $('#settings_files').val();
+    var settings = $('#settings_settings').val();
+    if (files == 'sites/default/files') {
       $('#settings_files').val(docroot_before + files);
-    });
-  }
-
+    }
+    if (settings == 'sites/default/settings.php') {
+      $('#settings_settings').val(docroot_before + settings);
+    }
+  });
 })(jQuery)
