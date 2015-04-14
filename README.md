@@ -114,6 +114,12 @@ $aliases['local'] = array(
 ```
 Now you can access your site from your local machine by using drush @[site name].local [command]
 
+##Connect to mysql from host machine
+
+```
+mysql -uroot -p -hdrupal.local
+```
+
 ##Now let's have some fun.
 
 For those who don't know, vampd isn't about just spinning up a site and dumping
