@@ -50,6 +50,7 @@
       "server_root_password": "root",
       "server_repl_password": "replication",
       "allow_remote_root": "true",
+      "bind_address": "0.0.0.0",
       "tunable": {
         "sync_binlog": "0",
         "innodb_flush_log_at_trx_commit": "0",
