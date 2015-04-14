@@ -96,6 +96,15 @@
         uri: gitRepo,
         revision: gitRev,
       };
+      if ($('#git_remotes_bool').is(':checked')) {
+        site.override_attributes.drupal.sites[site_name].repository.remotes = {};
+        $('.git-remote').each(function(i) {
+          console.log(this);
+          var name = $(this).find('input.name').val();
+          var uri = $(this).find('input.uri').val();
+          site.override_attributes.drupal.sites[site_name].repository.remotes[name] = uri;
+        });
+      }
     }
 
     return site;
@@ -182,7 +191,15 @@
     var jsonString = JSON.stringify(site, null, 2);
     $('#live-output textarea').html(jsonString);
   }
-
+  /**
+   * Counts the number of fields to clone.
+   */
+  function cloneCount(obj) {
+    if ($(obj).length > 1) {
+      return true;
+    }
+    return false;
+  }
   $('#submit').on('click', function(e) {
     e.preventDefault();
     var validate = validateForm();
@@ -240,5 +257,27 @@
       clearForm();
     }
   });
+  // Clone fields
+  $('.clone-fields').on('click', function(e) {
+    e.preventDefault();
+    var validate = validateForm();
+    if (validate) {
+      var cloneClass = $(this).data('clone');
+      var fields = $('.' + cloneClass + ':last').clone();
+      $('.' + cloneClass + ':last').after(fields);
+      $('.' + cloneClass + ':last input').val('');
+      $('.declone').show();
+    }
+    // Remove clone
+    $('.declone').on('click', function(e) {
+      if (cloneCount('.clone-field')) {
+        $(this).parent('.clone-field').remove();
+      }
+      if (!cloneCount('.clone-field')) {
+        $('.declone').hide();
+      }
+    });
+  });
+
 
 })(jQuery)

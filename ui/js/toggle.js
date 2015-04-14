@@ -13,15 +13,19 @@
 
   // Hide db location or profile unless it is showing.
   $('#actions input').on('change', function (e){
-    toggleInput('#action_import"', '#db_file');
-    toggleInput('#action_install"', '#profile');
+    toggleInput('#action_import', '#db_file');
+    toggleInput('#action_install', '#profile');
   });
 
   // Set up show/hide for git
   $('#git_bool').on('change', function(e) {
     toggleInput('#git_bool', '#git');
+    $('#git_remotes label').removeClass('required');
   });
-
+  // Set up git remotes handling
+  $('#git_remotes_bool').on('change', function(e) {
+    toggleInput('#git_remotes_bool', '#git_remote_fields');
+  });
   // Set the file directory, it is subject to change
   var files = $('#settings_files').val();
   // Set up show/hide for docroot

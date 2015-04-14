@@ -57,22 +57,27 @@
               <label>Branch or Tag</label>
               <input id="git_rev" type="text" placeholder="7.34" value="7.34"/>
             </div>
-            <div class="row">
-              <!-- <div class="large-12 medium-12 columns ">
+            <div class="row" id="git_remotes">
+              <div class="large-12 medium-12 columns ">
                 <label>Do you have additional git remotes?</label>
-                <input type="radio" name="git_remotes_yes" value="1" ><label for="git_remotes_yes">Yes</label>
-                <input type="radio" name="git_remotes_no" value="0" checked="checked"><label for="git_remotes_no">No</label>
+                <input type="checkbox" name="git_remotes_bool" id="git_remotes_bool" value="1" ><label for="git_remotes_bool">Yes</label>
               </div>
-              <div id="git_remotes" class="large-12 columns">
-                <div class="large-4 medium-6 columns">
-                  <label>Name</label>
-                  <input type="text" placeholder="upstream" />
+              <div id="git_remote_fields" class="large-12 columns">
+                <div class="git-remote clone-field">
+                  <div class="large-4 medium-6 columns">
+                    <label>Name</label>
+                    <input class="name" type="text" placeholder="upstream" />
+                  </div>
+                  <div class="large-8 medium-6 columns">
+                    <label>URI</label>
+                    <input class="uri" type="text" placeholder="git@github.com:test/test" />
+                  </div>
+                  <a href="#" class="declone">X</a>
                 </div>
-                <div class="large-8 medium-6 columns">
-                  <label>URI</label>
-                  <input type="text" placeholder="git@github.com:test/test" />
+                <div class="large-4">
+                  <a href="#" data-clone="git-remote" class="small success button clone-fields" id="git_add_remote">Add Another Remote</a>
                 </div>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>

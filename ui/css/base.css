@@ -1,7 +1,9 @@
 /*Hide things by default*/
 .js #git,
 .js #docroot_path,
-.js #db_file {
+.js #db_file,
+.js #git_remote_fields,
+.declone {
   display: none;
 }
 
