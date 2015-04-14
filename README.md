@@ -15,7 +15,7 @@ Installation Instructions
 The install of vampd is not the easiest thing, but if you are familiar with the
 command line, should be fairly simple.
 
-First thing is first, you will need to install [vagrant](https://www.vagrantup.com/downloads.html),
+First things first, you will need to install [vagrant](https://www.vagrantup.com/downloads.html),
 [virtualbox](https://www.virtualbox.org/wiki/Downloads) and [ChefDK](https://downloads.getchef.com/chef-dk/).
 If you are on a Mac you will also need to install X-code from the App store (for Git).
 
@@ -66,9 +66,13 @@ server.vm.synced_folder 'assets', '/assets', disabled: true
 
 Run 'vagrant up' from your machine (or 'vagrant provision' if your vbox is already running), then:
 
-On an OSX run:  `sudo mount -o resvport 192.168.50.5:/assets /assets`
+1. At the command line, cd into the vampd root directory and mkdir assets
 
-On linux run: `sudo mount 192.168.50.5:/assets /assets`
+1. Mount the virtual machine's /assets directory to vampd/assets:
+
+	On an OSX run:  `sudo mount -o resvport 192.168.50.5:/assets assets`, or
+
+  On linux run: `sudo mount 192.168.50.5:/assets assets`
 
 NOTE: Your local machine might not have an `/assets` folder. To create one, `mkdir /assets`. Also, note it is possible to mount the folder to another folder of your choosing. The directory `/assets` guarantees the path is the same as that of the virtualized machine. This is neccessary under some conditions, such as gitsubmodules.
 
