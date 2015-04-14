@@ -273,6 +273,17 @@
     $('#live-output textarea').html(jsonString);
   }
 
+  /**
+   * Bring distribution data into form.
+   */
+  function loadDistributions() {
+    // Loop through the sites, and set the options.
+    $.each(distributions, function(i) {
+      var site_name  = this.name;
+      $('#distributions').prepend('<option value="' + site_name + '">' + site_name + '</option>');
+    });
+  }
+
   $('#submit').on('click', function(e) {
     e.preventDefault();
     var validate = validateForm();
@@ -303,6 +314,20 @@
     if (validate) {
       createSite();
       updateLiveJson(site);
+    }
+  });
+
+  loadDistributions();
+
+  // On the change of distributions, we want to autofill the form.
+  $('#distributions').on('change', function(e) {
+    var site_name = $(this).val();
+    site = distributions[site_name];
+    if (site_name !== '_none') {
+      updateForm(site);
+    }
+    else {
+      clearForm(site);
     }
   });
 
