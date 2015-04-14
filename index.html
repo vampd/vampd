@@ -62,7 +62,7 @@
                 <label>Do you have additional git remotes?</label>
                 <input type="checkbox" name="git_remotes_bool" id="git_remotes_bool" value="1" ><label for="git_remotes_bool">Yes</label>
               </div>
-              <div id="git_remote_fields" class="large-12 columns">
+              <div id="git_remotes_fields" class="large-12 columns clone-wrapper">
                 <div class="git-remote clone-field">
                   <div class="large-4 medium-6 columns">
                     <label>Name</label>
@@ -118,19 +118,69 @@
             <input id="settings_settings" type="text" placeholder="sites/default/settings.php" value="sites/default/settings.php"/>
           </div>
         </div>
-        <!-- <div class="row">
+        <div class="row">
           <div class="large-12 medium-12 columns ">
-            <label>Do you have additional settings.phps?</label>
-            <input type="radio" name="settings_yes" value="1" ><label for="settings_yes">Yes</label>
-            <input type="radio" name="settings_no" value="0" checked="checked"><label for="settings_no">No</label>
+            <input type="checkbox" name="settings_yes" id="settings_add_bool"><label for="settings_bool_add">Add Additional settings.phps? ex: dev.settings.php</label>
           </div>
-          <div id="settings_add" class="large-12 columns">
-            <div class="large-12 medium-12 columns">
-              <label>Location of additional settings.php</label>
-              <input type="text" placeholder="sites/default/dev.settings.php" />
+          <div id="settings_add_fields" class="large-12 columns clone-wrapper">
+            <div class="settings-addition clone-field">
+              <div class="large-4 medium-6 columns">
+                <label>Name</label>
+                <input class="name" type="text" placeholder="dev" />
+              </div>
+              <div class="large-8 medium-6 columns">
+                <label>Location</label>
+                <input class="uri" type="text" placeholder="sites/all/dev.settings.php" />
+              </div>
+              <a href="#" class="declone">X</a>
+            </div>
+            <div class="large-4">
+              <a href="#" data-clone="settings-addition" class="small success button clone-fields">Add Another settings.php</a>
             </div>
           </div>
-        </div> -->
+        </div>
+        <div class="row">
+          <div class="large-12 medium-12 columns">
+            <label>Does your project use drush make?</label>
+            <input type="checkbox" name="drush_make_bool" value="1" id="drush_make_bool" ><label for="drush_bool">Yes</label>
+          </div>
+          <div id="drush_make_fields" class="large-12 columns">
+            <div class="large-5 medium-5 columns">
+              <input type="checkbox" name="drush_make_template" value="1" id="drush_make_template" ><label for="drush_make_template">Create a templated drush make file out repo settings?</label>
+            </div>
+            <div class="large-12 columns">
+              <label>API Version Number</label>
+              <input id="drush_make_api" type="text" placeholder="2" value="2"/>
+            </div>
+            <div class="large-12 columns">
+              <label>Default File</label>
+              <input id="drush_make_file_default" type="text" placeholder="build-*.make" value="build-*.make"/>
+            </div>
+
+            <div class="row" id="drush_make_files">
+              <div class="large-12 medium-12 columns ">
+                <label>Do you have additional drush make files to include ?</label>
+                <input type="checkbox" name="drush_make_file_bool" id="drush_make_file_bool" value="1" ><label for="drush_make_file_bool">Yes</label>
+              </div>
+              <div id="drush_make_file_fields" class="large-12 columns clone-wrapper">
+                <div class="drush-make-file clone-field">
+                  <div class="large-4 medium-6 columns">
+                    <label>Name</label>
+                    <input class="name" type="text" placeholder="upstream" />
+                  </div>
+                  <div class="large-8 medium-6 columns">
+                    <label>URI</label>
+                    <input class="uri" type="text" placeholder="git@github.com:test/test" />
+                  </div>
+                  <a href="#" class="declone">X</a>
+                </div>
+                <div class="large-4">
+                  <a href="#" data-clone="drush-make-file" class="small success button clone-fields" id="git_add_remote">Add Another Remote</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <input class="medium success button" id="submit" value="Submit"/>
         <a href="#" download="example.json" class="medium success button" id="downloadlink" style="display:none;">Download Json</a>
       </form>

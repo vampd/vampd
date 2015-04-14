@@ -8,6 +8,16 @@
   var site = {};
 
   /**
+   * Counts the number of fields to clone.
+   */
+  function cloneCount(obj) {
+    if ($(obj).length > 1) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * Function to validate form
    * @return true or false if not valid.
    */
@@ -42,9 +52,10 @@
         }
       }
     };
-    site.override_attributes.drupal.sites[site_name] = {};
-    site.override_attributes.drupal.sites[site_name].active = true;
-    site.override_attributes.drupal.sites[site_name].deploy = {};
+    single_site = site.override_attributes.drupal.sites;
+    single_site[site_name] = {};
+    single_site[site_name].active = true;
+    single_site[site_name].deploy = {};
     // Add the actions
     var actions = [];
     $('#actions input').each(function(i){
@@ -52,7 +63,7 @@
         actions[i] = $(this).val();
       }
     });
-    site.override_attributes.drupal.sites[site_name].deploy.action = actions;
+    single_site[site_name].deploy.action = actions;
     // Check the docroot
     var docroot = '';
     var docroot_before = '';
@@ -60,12 +71,11 @@
       var docroot = $('#settings_docroot').val();
     }
     // Add the drupal Version
-    site.override_attributes.drupal.sites[site_name].drupal = {
+    single_site[site_name].drupal = {
       version: $('#drupal_version').val(),
     }
     // Add settings
-    site.override_attributes.drupal.sites[site_name].drupal.settings = {
-      docroot: docroot,
+    single_site[site_name].drupal.settings = {
       files: $('#settings_files').val(),
       settings: {
         default: {
@@ -73,17 +83,20 @@
         }
       }
     };
+    if (docroot != '') {
+      single_site[site_name].drupal.settings.docroot = docroot;
+    }
 
     // Add the profile
     if ($('#action_install').is(':checked')) {
       var profile = $('#settings_profile').val();
-      site.override_attributes.drupal.sites[site_name].drupal.settings.profile = profile;
+      single_site[site_name].drupal.settings.profile = profile;
     }
 
     // Add the db file
     if ($('#action_import').is(':checked')) {
       var dbFile = $('#settings_db_file').val();
-      site.override_attributes.drupal.sites[site_name].drupal.settings.db_file = '/vagrant/' + dbFile;
+      single_site[site_name].drupal.settings.db_file = '/vagrant/' + dbFile;
     }
 
     // Add the repository
@@ -91,23 +104,52 @@
       var gitHost = $('#git_host').val();
       var gitRepo = $('#git_repo').val();
       var gitRev = $('#git_rev').val();
-      site.override_attributes.drupal.sites[site_name].repository = {
+      single_site[site_name].repository = {
         host: gitHost,
         uri: gitRepo,
         revision: gitRev,
       };
       if ($('#git_remotes_bool').is(':checked')) {
-        site.override_attributes.drupal.sites[site_name].repository.remotes = {};
+        single_site[site_name].repository.remotes = {};
         $('.git-remote').each(function(i) {
-          console.log(this);
           var name = $(this).find('input.name').val();
           var uri = $(this).find('input.uri').val();
-          site.override_attributes.drupal.sites[site_name].repository.remotes[name] = uri;
+          single_site[site_name].repository.remotes[name] = uri;
         });
       }
     }
-
+    // Settings
+    if ($('#settings_add_bool').is(':checked')) {
+      $('.settings-addition').each(function(i) {
+        var name = $(this).find('input.name').val();
+        var uri = $(this).find('input.uri').val();
+        single_site[site_name].drupal.settings.settings[name] = {
+          location: uri
+        }
+      });
+    }
+    // Drush Make Settings
+    if ($('#drush_make_bool').is(':checked')) {
+      single_site[site_name].drupal.drush_make = {
+        api: $('#drush_make_api').val(),
+        files: {
+          default: $('#drush_make_file_default').val(),
+        },
+        template: false,
+      }
+      if ($('#drush_make_template').is(':checked')) {
+        single_site[site_name].drupal.drush_make.template = true;
+      }
+      if ($('#drush_make_file_bool').is(':checked')) {
+        $('.drush-make-file').each(function(i) {
+          var name = $(this).find('input.name').val();
+          var uri = $(this).find('input.uri').val();
+          single_site[site_name].drupal.drush_make.files[name] = uri;
+        });
+      }
+    }
     return site;
+    console.log(site);
   }
 
   /**
@@ -158,6 +200,16 @@
         $('#git_repo').val(this.repository.uri.toString());
         $('#git_rev').val(this.repository.revision.toString());
         $('#git_bool').click();
+        // Load the git remotes
+        if (this.repository.remotes != null) {
+          $.each(this.repository.remotes, function(i, v) {
+            $('.git-remote:last input.name').val(i);
+            $('.git-remote:last input.uri').val(this);
+            $('#git_remotes_fields .clone-fields').click();
+          });
+          $('.git-remote:last').remove();
+          $('#git_remotes_bool').click();
+        }
       }
       // Load the profile
       if (this.drupal.settings.profile != null) {
@@ -178,28 +230,49 @@
       $('#settings_files').val(this.drupal.settings.files.toString());
       // Load the default settings.php location.
       $('#settings_settings').val(this.drupal.settings.settings.default.location.toString());
+      // Load additional settings.php
+      if (Object.keys(this.drupal.settings.settings).length > 1) {
+        $.each(this.drupal.settings.settings, function(i,v) {
+          if (i !== 'default') {
+            $('.settings-addition:last input.name').val(i);
+            $('.settings-addition:last input.uri').val(v.location.toString());
+            $('#settings_add_fields .clone-fields').click();
+          }
+        });
+        $('.settings-addition:last').remove();
+        $('#settings_add_bool').click();
+      }
+      if (this.drupal.drush_make != null) {
+        $('#drush_make_api').val(this.drupal.drush_make.api);
+        if (this.drupal.drush_make) {
+          $('#drush_make_template').click();
+        }
+        $('#drush_make_file_default').val(this.drupal.drush_make.files.default);
+        $('#drush_make_bool').click();
+        if (Object.keys(this.drupal.drush_make.files).length > 1) {
+          $.each(this.drupal.drush_make.files, function(i,v) {
+            if (i !== 'default') {
+              $('.drush-make-file:last input.name').val(i);
+              $('.drush-make-file:last input.uri').val(v);
+              $('#drush_make_fields .clone-fields').click();
+            }
+          });
+          $('.drush-make-file:last').remove();
+          $('#drush_make_file_bool').click();
+        }
+      }
     });
   }
 
   /**
    * Function to Update live text area
-   * @param  {[type]} e) {               e.preventDefault();    var validate [description]
-   * @return {[type]}    [description]
    */
   function updateLiveJson(site) {
     $('#live-output .site-name b').html(site.name + '.json');
     var jsonString = JSON.stringify(site, null, 2);
     $('#live-output textarea').html(jsonString);
   }
-  /**
-   * Counts the number of fields to clone.
-   */
-  function cloneCount(obj) {
-    if ($(obj).length > 1) {
-      return true;
-    }
-    return false;
-  }
+
   $('#submit').on('click', function(e) {
     e.preventDefault();
     var validate = validateForm();
@@ -210,6 +283,7 @@
       link.download = site.name + '.json';
       link.style.display = 'block';
       sites[site.name] = site;
+      console.log(sites)
       // Save the site to local storage.
       localStorage.setItem('vampd', JSON.stringify(sites));
     }
@@ -231,6 +305,7 @@
       updateLiveJson(site);
     }
   });
+
   // Loop through the sites, and set the options.
   $.each(sites, function(i) {
     var site_name  = this.name;
@@ -257,6 +332,7 @@
       clearForm();
     }
   });
+
   // Clone fields
   $('.clone-fields').on('click', function(e) {
     e.preventDefault();
@@ -274,10 +350,9 @@
         $(this).parent('.clone-field').remove();
       }
       if (!cloneCount('.clone-field')) {
-        $('.declone').hide();
+        $('.declone') .hide();
       }
     });
   });
-
 
 })(jQuery)

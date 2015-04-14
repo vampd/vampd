@@ -2,7 +2,10 @@
 .js #git,
 .js #docroot_path,
 .js #db_file,
-.js #git_remote_fields,
+.js #git_remotes_fields,
+.js #settings_add_fields,
+.js #drush_make_fields,
+.js #drush_make_file_fields,
 .declone {
   display: none;
 }

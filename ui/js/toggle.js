@@ -24,8 +24,9 @@
   });
   // Set up git remotes handling
   $('#git_remotes_bool').on('change', function(e) {
-    toggleInput('#git_remotes_bool', '#git_remote_fields');
+    toggleInput('#git_remotes_bool', '#git_remotes_fields');
   });
+
   // Set the file directory, it is subject to change
   var files = $('#settings_files').val();
   // Set up show/hide for docroot
@@ -49,4 +50,18 @@
       $('#settings_settings').val(docroot_before + settings);
     }
   });
+  // Set up the additional settings.php
+  $('#settings_add_bool').on('change', function(e) {
+    toggleInput('#settings_add_bool', '#settings_add_fields');
+  });
+  // Drush Make
+  $('#drush_make_bool').on('change', function(e) {
+    toggleInput('#drush_make_bool', '#drush_make_fields');
+    $('#drush_make_files label').removeClass('required');
+  });
+  // Drush Make files
+  $('#drush_make_file_bool').on('change', function(e) {
+    toggleInput('#drush_make_file_bool', '#drush_make_file_fields');
+  });
+
 })(jQuery)
