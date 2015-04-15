@@ -130,7 +130,7 @@
     }
     // Drush Make Settings
     if ($('#drush_make_bool').is(':checked')) {
-      single_site[site_name].drupal.drush_make = {
+      single_site[site_name].drush_make = {
         api: $('#drush_make_api').val(),
         files: {
           default: $('#drush_make_file_default').val(),
@@ -138,13 +138,13 @@
         template: false,
       }
       if ($('#drush_make_template').is(':checked')) {
-        single_site[site_name].drupal.drush_make.template = true;
+        single_site[site_name].drush_make.template = true;
       }
       if ($('#drush_make_file_bool').is(':checked')) {
         $('.drush-make-file').each(function(i) {
           var name = $(this).find('input.name').val();
           var uri = $(this).find('input.uri').val();
-          single_site[site_name].drupal.drush_make.files[name] = uri;
+          single_site[site_name].drush_make.files[name] = uri;
         });
       }
     }
@@ -242,15 +242,15 @@
         $('.settings-addition:last').remove();
         $('#settings_add_bool').click();
       }
-      if (this.drupal.drush_make != null) {
-        $('#drush_make_api').val(this.drupal.drush_make.api);
-        if (this.drupal.drush_make) {
+      if (this.drush_make != null) {
+        $('#drush_make_api').val(this.drush_make.api);
+        if (this.drush_make) {
           $('#drush_make_template').click();
         }
-        $('#drush_make_file_default').val(this.drupal.drush_make.files.default);
+        $('#drush_make_file_default').val(this.drush_make.files.default);
         $('#drush_make_bool').click();
-        if (Object.keys(this.drupal.drush_make.files).length > 1) {
-          $.each(this.drupal.drush_make.files, function(i,v) {
+        if (Object.keys(this.drush_make.files).length > 1) {
+          $.each(this.drush_make.files, function(i,v) {
             if (i !== 'default') {
               $('.drush-make-file:last input.name').val(i);
               $('.drush-make-file:last input.uri').val(v);
@@ -271,6 +271,17 @@
     $('#live-output .site-name b').html(site.name + '.json');
     var jsonString = JSON.stringify(site, null, 2);
     $('#live-output textarea').html(jsonString);
+  }
+
+  /**
+   * Bring distribution data into form.
+   */
+  function loadDistributions() {
+    // Loop through the sites, and set the options.
+    $.each(distributions, function(i) {
+      var site_name  = this.name;
+      $('#distributions').prepend('<option value="' + site_name + '">' + site_name + '</option>');
+    });
   }
 
   $('#submit').on('click', function(e) {
@@ -303,6 +314,20 @@
     if (validate) {
       createSite();
       updateLiveJson(site);
+    }
+  });
+
+  loadDistributions();
+
+  // On the change of distributions, we want to autofill the form.
+  $('#distributions').on('change', function(e) {
+    var site_name = $(this).val();
+    site = distributions[site_name];
+    if (site_name !== '_none') {
+      updateForm(site);
+    }
+    else {
+      clearForm(site);
     }
   });
 
