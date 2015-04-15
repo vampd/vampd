@@ -192,14 +192,15 @@
       $('#actions input').prop('checked', false);
       $.each(this.deploy.action, function(i) {
         var action = this.toString();
-        $('input[name="action_' + action + '"]').click();
+        $('input[name="action_' + action + '"]').prop( 'checked', true );
       });
       // Load the github
       if (this.repository != null) {
         $('#git_host').val(this.repository.host.toString());
         $('#git_repo').val(this.repository.uri.toString());
         $('#git_rev').val(this.repository.revision.toString());
-        $('#git_bool').click();
+        $('#git_bool').prop( 'checked', true );
+        $('#git_bool').trigger( "change" );
         // Load the git remotes
         if (this.repository.remotes != null) {
           $.each(this.repository.remotes, function(i, v) {
@@ -208,7 +209,8 @@
             $('#git_remotes_fields .clone-fields').click();
           });
           $('.git-remote:last').remove();
-          $('#git_remotes_bool').click();
+          $('#git_remotes_bool').prop( 'checked', true );
+          $('#git_remotes_bool').trigger( "change" );
         }
       }
       // Load the profile
@@ -224,7 +226,8 @@
       // Load the docroot
       if (this.drupal.settings.docroot != null) {
         $('#settings_docroot').val(this.drupal.settings.docroot.toString())
-        $('#docroot_bool').click();
+        $('#docroot_bool').prop( 'checked', true );
+        $('#docroot_bool').trigger( "change" );
       }
       // Load the files
       $('#settings_files').val(this.drupal.settings.files.toString());
@@ -240,15 +243,17 @@
           }
         });
         $('.settings-addition:last').remove();
-        $('#settings_add_bool').click();
+        $('#settings_add_bool').prop( 'checked', true );
+        $('#settings_add_bool').trigger( "change" );
       }
       if (this.drush_make != null) {
         $('#drush_make_api').val(this.drush_make.api);
-        if (this.drush_make) {
-          $('#drush_make_template').click();
+        if (this.drush_make.template) {
+          $('#drush_make_template').prop( 'checked', true );
         }
         $('#drush_make_file_default').val(this.drush_make.files.default);
-        $('#drush_make_bool').click();
+        $('#drush_make_bool').prop( 'checked', true );
+        $('#drush_make_bool').trigger( "change" );
         if (Object.keys(this.drush_make.files).length > 1) {
           $.each(this.drush_make.files, function(i,v) {
             if (i !== 'default') {
@@ -258,8 +263,17 @@
             }
           });
           $('.drush-make-file:last').remove();
-          $('#drush_make_file_bool').click();
+          $('#drush_make_file_bool').prop( 'checked', true );
+          $('#drush_make_file_bool').trigger( "change" );
         }
+        else {
+          $('#drush_make_file_bool').prop( 'checked', false );
+          $('#drush_make_file_bool').trigger( "change" );
+        }
+      }
+      else {
+        $('#drush_make_bool').prop( 'checked', false );
+        $('#drush_make_bool').trigger( "change" );
       }
     });
   }
@@ -284,6 +298,15 @@
     });
   }
 
+  function loadSavedSites() {
+    $('#previous_sites option').remove();
+    // Loop through the sites, and set the options.
+    $.each(sites, function(i) {
+      var site_name  = this.name;
+      $('#previous_sites').prepend('<option value="' + site_name + '">' + site_name + '</option>');
+    });
+  }
+
   $('#submit').on('click', function(e) {
     e.preventDefault();
     var validate = validateForm();
@@ -297,6 +320,7 @@
       console.log(sites)
       // Save the site to local storage.
       localStorage.setItem('vampd', JSON.stringify(sites));
+      loadSavedSites();
     }
   });
 
@@ -331,11 +355,7 @@
     }
   });
 
-  // Loop through the sites, and set the options.
-  $.each(sites, function(i) {
-    var site_name  = this.name;
-    $('#previous_sites').prepend('<option value="' + site_name + '">' + site_name + '</option>');
-  });
+  loadSavedSites();
 
   // On the change of previous sites, we want to autofill the form
   $('#previous_sites').on('change', function(e) {
