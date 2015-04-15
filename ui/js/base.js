@@ -287,6 +287,20 @@
   }
 
   /**
+   * Remove elments from the dom.
+   */
+  function declone($this) {
+    var parent = $this.closest('.clone-field').parent();
+
+    $this.closest('.clone-field').remove();
+
+    if ($(parent).find('.clone-field').length == 1) {
+      $(parent).find('.declone').hide();
+    }
+
+  }
+
+  /**
    * Bring distribution data into form.
    */
   function loadDistributions() {
@@ -316,7 +330,6 @@
       link.download = site.name + '.json';
       link.style.display = 'block';
       sites[site.name] = site;
-      console.log(sites)
       // Save the site to local storage.
       localStorage.setItem('vampd', JSON.stringify(sites));
       loadSavedSites();
@@ -377,25 +390,29 @@
     }
   });
 
+  // Attach event to all existing declone elements.
+  $('.declone').on('click', function(e) {
+    e.preventDefault();
+    declone($(this));
+  });
+
   // Clone fields
   $('.clone-fields').on('click', function(e) {
     e.preventDefault();
-    var validate = validateForm();
-    if (validate) {
-      var cloneClass = $(this).data('clone');
-      var fields = $('.' + cloneClass + ':last').clone();
-      $('.' + cloneClass + ':last').after(fields);
-      $('.' + cloneClass + ':last input').val('');
-      $('.declone').show();
+    var cloneClass = $(this).data('clone');
+    var fields = $('.' + cloneClass + ':last').clone();
+    $('.' + cloneClass + ':last').after(fields);
+    $('.' + cloneClass + ':last input').val('');
+
+    var wrapper = $(this).closest('.clone-wrapper');
+    if($(wrapper).find('.clone-field').length > 1) {
+      $(wrapper).find('.clone-field .declone').show();
     }
+
     // Remove clone
-    $('.declone').on('click', function(e) {
-      if (cloneCount('.clone-field')) {
-        $(this).parent('.clone-field').remove();
-      }
-      if (!cloneCount('.clone-field')) {
-        $('.declone') .hide();
-      }
+    $(fields).find('.declone').on('click', function(e) {
+      e.preventDefault();
+      declone($(this));
     });
   });
 
