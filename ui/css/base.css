@@ -9,7 +9,9 @@
 .declone {
   display: none;
 }
-
+.hidden-label label{
+  visibility: hidden;
+}
 label.required:after {
   content: '*';
   display: inline-block;
@@ -27,4 +29,12 @@ label.error + input[type="text"] {
 
 #live-output textarea {
   height: 300px;
+}
+
+#logo .alpha {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -3px;
+  margin-left: -19px;
+  font-size: .5em;
 }

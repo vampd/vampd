@@ -312,7 +312,6 @@
   }
 
   function loadSavedSites() {
-    $('#previous_sites option').remove();
     // Loop through the sites, and set the options.
     $.each(sites, function(i) {
       var site_name  = this.name;
