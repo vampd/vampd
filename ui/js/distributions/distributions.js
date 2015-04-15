@@ -33,7 +33,8 @@ var distributions = {
             "drush_make":{
               "api":"2",
               "files":{
-                "default":"drupal-org-core.make"
+                "default":"build-commerce-kickstart.make",
+                "core":"drupal-org-core.make"
               },
               "template":true
             },
@@ -81,7 +82,8 @@ var distributions = {
             "drush_make":{
               "api":"2",
               "files":{
-                "default":"drupal-org-core.make"
+                "default":"build-commons.make",
+                "core":"drupal-org-core.make"
               },
               "template":true
             },
@@ -129,7 +131,8 @@ var distributions = {
             "drush_make":{
               "api":"2",
               "files":{
-                "default":"drupal-org-core.make"
+                "default":"build-lightning.make",
+                "core":"drupal-org-core.make"
               },
               "template":true
             },
@@ -226,7 +229,8 @@ var distributions = {
             "drush_make":{
               "api":"2",
               "files":{
-                "default":"drupal-org-core.make"
+                "default":"build-panopoly.make",
+                "core":"drupal-org-core.make"
               },
               "template":true
             },
