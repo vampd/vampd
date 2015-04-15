@@ -60,7 +60,7 @@
     var actions = [];
     $('#actions input').each(function(i){
       if ($(this).is(':checked')) {
-        actions[i] = $(this).val();
+        actions.push($(this).val());
       }
     });
     single_site[site_name].deploy.action = actions;
@@ -149,7 +149,6 @@
       }
     }
     return site;
-    console.log(site);
   }
 
   /**
