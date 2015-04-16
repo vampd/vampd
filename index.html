@@ -1,0 +1,212 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VAMPD UI | Welcome</title>
+    <link rel="stylesheet" href="ui/plugins/zurb/css/foundation.css" />
+    <link rel="stylesheet" href="ui/css/base.css" />
+    <script src="ui/plugins/zurb/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <h1 id="logo"><a href="http://vampd.io">VAMPD.io</a><span class="alpha">alpha</span></h1>
+      </div>
+      <div class="large-3 columns hidden-label">
+        <label>Distributions</label>
+        <select id="distributions">
+          <option value="_none"> Distributions</option>
+        </select>
+      </div>
+      <div class="large-3 columns hidden-label">
+        <label>Previous Sites</label>
+        <select id="previous_sites">
+          <option value="_none">Previous Sites</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <form id="site_1">
+        <div class="row">
+          <div class="large-12 columns required">
+            <label class="required">Project Machine Name</label>
+            <input id="site_name" type="text" placeholder="example" />
+          </div>
+        </div>
+        <div class="row">
+          <div id="actions" class="large-12 columns">
+            <label>What would you like to do?</label>
+            <input type="checkbox" name="action_deploy" id="action_deploy" value="deploy"><label for="action_deploy">Deploy</label>
+            <input type="checkbox" name="action_install" id="action_install" value="install"><label for="action_install">Install</label>
+            <input type="checkbox" name="action_import" id="action_import" value="import" ><label for="action_import">Import</label>
+            <input type="checkbox" name="action_update" id="action_update" value="update" ><label for="action_update">Update</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 medium-12 columns">
+            <label>Do you have a git repo?</label>
+            <input type="checkbox" name="git_yes" value="1" id="git_bool" ><label for="git_bool">Yes</label>
+          </div>
+          <div id="git" class="large-12 columns">
+            <div class="large-4 medium-4 columns">
+              <label>Host</label>
+              <input id="git_host" type="text" placeholder="github.com" value="github.com"/>
+            </div>
+            <div class="large-4 medium-4 columns">
+              <label>Git Repo</label>
+              <input id="git_repo" type="text" placeholder="git@github.com:drupal/drupal" value="git@github.com:drupal/drupal"/>
+            </div>
+            <div class="large-4 medium-4 columns">
+              <label>Branch or Tag</label>
+              <input id="git_rev" type="text" placeholder="7.34" value="7.34"/>
+            </div>
+            <div class="row" id="git_remotes">
+              <div class="large-12 medium-12 columns ">
+                <label>Do you have additional git remotes?</label>
+                <input type="checkbox" name="git_remotes_bool" id="git_remotes_bool" value="1" ><label for="git_remotes_bool">Yes</label>
+              </div>
+              <div id="git_remotes_fields" class="large-12 columns clone-wrapper">
+                <div class="git-remote clone-field">
+                  <div class="large-4 medium-6 columns">
+                    <label>Name</label>
+                    <input class="name" type="text" placeholder="upstream" />
+                  </div>
+                  <div class="large-8 medium-6 columns">
+                    <label>URI</label>
+                    <input class="uri" type="text" placeholder="git@github.com:test/test" />
+                  </div>
+                  <a href="#" class="declone">X</a>
+                </div>
+                <div class="large-4">
+                  <a href="#" data-clone="git-remote" class="small success button clone-fields" id="git_add_remote">Add Another Remote</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 medium-12 columns">
+            <label>Drupal Version</label>
+            <select id="drupal_version">
+              <option value="7.x">7.x</option>
+              <option value="6.x">6.x</option>
+            </select>
+          </div>
+          <div id="profile" class="large-12 medium-12 columns">
+            <label>Install Profile</label>
+            <input id="settings_profile" type="text" placeholder="standard" value="standard" />
+          </div>
+          <div id="db_file" class="large-12 medium-12 columns">
+            <label>DB File location (relative to your vampd instance)</label>
+            <input id="settings_db_file" type="text" placeholder="sites/dbs/site_name.sql" />
+          </div>
+        </div>
+        <div class="row">
+          <div id="docroot" class="large-12 medium-12 columns git_bool">
+            <label>Are your files in a docroot? Example: "htdocs", "docroot".</label>
+            <input type="checkbox" name="docroot" id="docroot_bool" value="1" ><label for="docroot_bool">Yes</label>
+          </div>
+          <div id="docroot_path" class="large-12 columns">
+            <label>What is the docroot?</label>
+            <input id="settings_docroot" type="text" placeholder="docroot" />
+          </div>
+        </div>
+        <div class="row">
+          <div id="files" class="large-12 medium-12 columns ">
+            <label class="required">Where do your files live, relative to the repository root? </label>
+            <input id="settings_files" type="text" placeholder="sites/default/files" value="sites/default/files" />
+          </div>
+          <div id="settings" class="large-12 medium-12 columns">
+            <label class="required">Where does your sites settings.php live, relative to repository?</label>
+            <input id="settings_settings" type="text" placeholder="sites/default/settings.php" value="sites/default/settings.php"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 medium-12 columns ">
+            <input type="checkbox" name="settings_yes" id="settings_add_bool"><label for="settings_bool_add">Add Additional settings.phps? ex: dev.settings.php</label>
+          </div>
+          <div id="settings_add_fields" class="large-12 columns clone-wrapper">
+            <div class="settings-addition clone-field">
+              <div class="large-4 medium-6 columns">
+                <label>Name</label>
+                <input class="name" type="text" placeholder="dev" />
+              </div>
+              <div class="large-8 medium-6 columns">
+                <label>Location</label>
+                <input class="uri" type="text" placeholder="sites/all/dev.settings.php" />
+              </div>
+              <a href="#" class="declone">X</a>
+            </div>
+            <div class="large-4">
+              <a href="#" data-clone="settings-addition" class="small success button clone-fields">Add Another settings.php</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 medium-12 columns">
+            <label>Does your project use drush make?</label>
+            <input type="checkbox" name="drush_make_bool" value="1" id="drush_make_bool" ><label for="drush_bool">Yes</label>
+          </div>
+          <div id="drush_make_fields" class="large-12 columns">
+            <div class="large-5 medium-5 columns">
+              <input type="checkbox" name="drush_make_template" value="1" id="drush_make_template" ><label for="drush_make_template">Create a templated drush make file out repo settings?</label>
+            </div>
+            <div class="large-12 columns">
+              <label>API Version Number</label>
+              <input id="drush_make_api" type="text" placeholder="2" value="2"/>
+            </div>
+            <div class="large-12 columns">
+              <label>Default File</label>
+              <input id="drush_make_file_default" type="text" placeholder="build-*.make" value="build-*.make"/>
+            </div>
+
+            <div class="row" id="drush_make_files">
+              <div class="large-12 medium-12 columns ">
+                <label>Do you have additional drush make files to include ?</label>
+                <input type="checkbox" name="drush_make_file_bool" id="drush_make_file_bool" value="1" ><label for="drush_make_file_bool">Yes</label>
+              </div>
+              <div id="drush_make_file_fields" class="large-12 columns clone-wrapper">
+                <div class="drush-make-file clone-field">
+                  <div class="large-4 medium-6 columns">
+                    <label>Name</label>
+                    <input class="name" type="text" placeholder="core" />
+                  </div>
+                  <div class="large-8 medium-6 columns">
+                    <label>File</label>
+                    <input class="uri" type="text" placeholder="drupal-org-core.make" />
+                  </div>
+                  <a href="#" class="declone">X</a>
+                </div>
+                <div class="large-4">
+                  <a href="#" data-clone="drush-make-file" class="small success button clone-fields" id="git_add_remote">Add Another Make File</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <input class="medium success button" id="submit" value="Submit"/>
+        <a href="#" download="example.json" class="medium success button" id="downloadlink" style="display:none;">Download Json</a>
+      </form>
+      <div class="row">
+        <div id="live-output" class="large-12 medium-12 columns">
+          <h5>Save the Following code to your vampd directory under chef/roles/<span class="site-name"><b>site_name.json</b></span></h5>
+          <textarea></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <a href="#" class="medium success button" id="clear_sites">Clear Previous Sites</a>
+      </div>
+    </div>
+    <script src="ui/plugins/zurb/js/vendor/jquery.js"></script>
+    <script src="ui/plugins/zurb/js/foundation.min.js"></script>
+    <script src="ui/js/distributions/distributions.js"></script>
+    <script src="ui/js/base.js"></script>
+    <script src="ui/js/toggle.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

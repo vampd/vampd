@@ -1,0 +1,40 @@
+/*Hide things by default*/
+.js #git,
+.js #docroot_path,
+.js #db_file,
+.js #git_remotes_fields,
+.js #settings_add_fields,
+.js #drush_make_fields,
+.js #drush_make_file_fields,
+.declone {
+  display: none;
+}
+.hidden-label label{
+  visibility: hidden;
+}
+label.required:after {
+  content: '*';
+  display: inline-block;
+  vertical-align: top;
+  color: red;
+}
+
+label.error {
+  color: red;
+}
+
+label.error + input[type="text"] {
+  border-color: red;
+}
+
+#live-output textarea {
+  height: 300px;
+}
+
+#logo .alpha {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -3px;
+  margin-left: -19px;
+  font-size: .5em;
+}
