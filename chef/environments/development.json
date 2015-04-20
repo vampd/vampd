@@ -18,6 +18,8 @@
       }
     },
    "apache": {
+      "default_modules": ["mod_ssl", "mod_rewrite", "mod_php5"],
+      "mpm": "prefork",
       "prefork": {
         "startservers": "1",
         "minspareservers": "1",
@@ -29,12 +31,11 @@
         "maxkeepaliverequests": "1000"
       }
     },
-    "build_essential": {
-      "compiletime": true
+    "build-essential": {
+      "compile_time": true
     },
     "db": {
       "driver": "mysql",
-      "client_recipe": "mysql::client",
       "root": "root",
       "grant_hosts": [
         "localhost"
@@ -49,7 +50,7 @@
       "server_debian_password": "debian",
       "server_root_password": "root",
       "server_repl_password": "replication",
-      "allow_remote_root": "true",
+      "allow_remote_root": true,
       "bind_address": "0.0.0.0",
       "tunable": {
         "sync_binlog": "0",
@@ -76,8 +77,7 @@
         "memory_limit": "256M",
         "upload_max_filesize": "8M",
         "post_max_size": "10M"
-      },
-      "conf_dir": "/etc/php5/apache2"
+      }
     },
     "samba": {
       "workgroup": "WORKGROUP",
