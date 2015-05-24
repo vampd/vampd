@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
   config.omnibus.chef_version = '11.16.2'
   config.berkshelf.enabled = true
   config.berkshelf.berksfile_path = working_dir + "Berksfile"
-    config.trigger.before [:reload, :up, :provision], stdout: true do
+  config.trigger.before [:reload, :up, :provision], stdout: true do
     SYNCED_FOLDER = ".vagrant/machines/drupaldev/virtualbox/synced_folders"
     info "Trying to delete folder #{SYNCED_FOLDER}"
     begin
