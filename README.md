@@ -31,6 +31,7 @@ git clone https://github.com/vampd/vampd.git
 cd vampd
 vagrant plugin install vagrant-berkshelf
 vagrant plugin install vagrant-omnibus
+vagrant plugin install vagrant-triggers
 vagrant up
 ```
 
