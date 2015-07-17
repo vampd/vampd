@@ -9,6 +9,18 @@ environments or needs of the developer. Our vision is to increase productivity
 by providing a stable, reproducible, virtualized environments that include
 meet all your drupal needs.
 
+Installs
+--------
+* Ubuntu 14.04 (default)
+** Apache 2.4
+** PHP 5.5
+** MySQL 5.5
+* Ubuntu 12.04 (optional)
+** Apache 2.2
+** PHP 5.3
+** MySQL 5.5
+
+
 Installation Instructions
 -------------------------
 
@@ -31,6 +43,7 @@ git clone https://github.com/vampd/vampd.git
 cd vampd
 vagrant plugin install vagrant-berkshelf
 vagrant plugin install vagrant-omnibus
+vagrant plugin install vagrant-cachier
 vagrant up
 ```
 

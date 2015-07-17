@@ -212,6 +212,10 @@
           $('#git_remotes_bool').trigger( "change" );
         }
       }
+      // Load the Drupal version.
+      if (this.drupal.settings.profile != null) {
+        $('#drupal_version').val(this.drupal.version.toString());
+      }
       // Load the profile
       if (this.drupal.settings.profile != null) {
         $('#settings_profile').val(this.drupal.settings.profile.toString());

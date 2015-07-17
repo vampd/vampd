@@ -18,6 +18,8 @@
       }
     },
    "apache": {
+      "default_modules": ["mod_ssl", "mod_rewrite", "mod_php5"],
+      "mpm": "prefork",
       "prefork": {
         "startservers": "1",
         "minspareservers": "1",
@@ -29,12 +31,11 @@
         "maxkeepaliverequests": "1000"
       }
     },
-    "build_essential": {
-      "compiletime": true
+    "build-essential": {
+      "compile_time": true
     },
     "db": {
       "driver": "mysql",
-      "client_recipe": "mysql::client",
       "root": "root",
       "grant_hosts": [
         "localhost"
@@ -49,35 +50,40 @@
       "server_debian_password": "debian",
       "server_root_password": "root",
       "server_repl_password": "replication",
-      "allow_remote_root": "true",
+      "allow_remote_root": true,
       "bind_address": "0.0.0.0",
       "tunable": {
-        "sync_binlog": "0",
-        "innodb_flush_log_at_trx_commit": "0",
-        "max_allowed_packet": "16M",
-        "max_connect_errors": "1000000",
-        "tmp_table_size": "32M",
-        "max_heap_table_size": "32M",
-        "query_cache_type": "0",
-        "max_connections": "500",
-        "thread_cache_size": "50",
-        "open_files_limit": "65535",
-        "table_definition_cache": "4096",
-        "table_open_cache": "4096",
-        "innodb_flush_method": "O_DIRECT",
-        "innodb_file_per_table": "1",
-        "innodb_buffer_pool_size": "128M",
-        "query_cache_size": "12M",
-        "table_cache": "5120"
+        "mysqld": {
+          "sync_binlog": "0",
+          "innodb_flush_log_at_trx_commit": "0",
+          "tmp_table_size": "32M",
+          "max_heap_table_size": "32M",
+          "query_cache_type": "0",
+          "max_connections": "500",
+          "thread_cache_size": "50",
+          "table_definition_cache": "4096",
+          "table_open_cache": "4096",
+          "innodb_flush_method": "O_DIRECT",
+          "innodb_file_per_table": "1",
+          "innodb_buffer_pool_size": "128M",
+          "query_cache_size": "12M"
+        },
+        "mysqld_safe": {
+          "open_files_limit": "65535"
+        },
+        "mysql": {
+          "max_allowed_packet": "16M"
+        }
       }
     },
     "php": {
+      "conf_dir": "/etc/php5/apache2",
       "directives": {
+        "extension": "uploadprogress.so",
         "memory_limit": "256M",
         "upload_max_filesize": "8M",
         "post_max_size": "10M"
-      },
-      "conf_dir": "/etc/php5/apache2"
+      }
     },
     "samba": {
       "workgroup": "WORKGROUP",

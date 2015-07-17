@@ -17,10 +17,8 @@ require 'json'
   downloaded by uncommenting the appropriate server.vm.box_url line below. You
   can read more regarding base boxes at a wiki page you can help correct and
   keep up to date:
-  https://github.com/cyberswat/drupal-lamp/wiki/Vagrant-Base-Boxes
 
 =end
- # data = JSON.parse(File.read("infrastructure/drupal_lamp.json"))
 
 Vagrant.configure("2") do |config|
 
@@ -30,8 +28,14 @@ Vagrant.configure("2") do |config|
   config.berkshelf.berksfile_path = working_dir + "Berksfile"
   config.vm.define :drupaldev do |server|
     server.ssh.forward_agent = true
-    server.vm.box = "precise64current"
-    server.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+
+    # Ubuntu 14.04
+    server.vm.box = "trusty64"
+    server.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box"
+
+    # Ubuntu 12.04
+    # server.vm.box = "precise64current"
+    # server.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
     server.vm.provider "vmware_fusion" do |v|
       v.vmx["memsize"]  = "1024"
