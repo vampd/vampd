@@ -89,6 +89,12 @@ Run 'vagrant up' from your machine (or 'vagrant provision' if your vbox is alrea
 
 NOTE: Your local machine might not have an `/assets` folder. To create one, `mkdir /assets`. Also, note it is possible to mount the folder to another folder of your choosing. The directory `/assets` guarantees the path is the same as that of the virtualized machine. This is neccessary under some conditions, such as gitsubmodules.
 
+In the event that you get an `mount_nfs: can't mount :/assets from 192.168.50.5 onto /Users/username/vagrant/vampd/assets: RPC prog. not avail` error or similar, you may have to start/restart nfs on your Vagrant instance.  
+
+1. From your local machine, ssh into your Vagrant instance using `vagrant ssh <identifier>`
+1. `sudo su` to root directory
+1. run `/etc/init.d/nfs-kernel-server restart`  -- if you get ` * Usage: nfs-kernel-server {start|stop|status|reload|force-reload|restart}` then run `start` instead of `restart`
+
 ##Mounting the assets through Samba
 To mount your local machine to the host, you will need to do some leg work, but it
 is very minimal.
